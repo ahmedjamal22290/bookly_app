@@ -1,4 +1,5 @@
 import 'package:bookly_app/core/utils/assets.dart';
+import 'package:bookly_app/features/splash/presention/views/widgets/slide_fade_animated_text.dart';
 import 'package:flutter/material.dart';
 
 class SplashViewBody extends StatefulWidget {
@@ -34,20 +35,10 @@ class _SplashViewBodyState extends State<SplashViewBody>
       children: [
         Image.asset(AssetsData.logo),
         const SizedBox(height: 4),
-        AnimatedBuilder(
-            animation: slidingAnimation,
-            builder: (context, _) {
-              return FadeTransition(
-                opacity: fadeAnimation,
-                child: SlideTransition(
-                  position: slidingAnimation,
-                  child: const Text(
-                    'Read Free Books',
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              );
-            }),
+        SlideFadeAnimatedText(
+          slidingAnimation: slidingAnimation,
+          fadeAnimation: fadeAnimation,
+        ),
       ],
     );
   }
