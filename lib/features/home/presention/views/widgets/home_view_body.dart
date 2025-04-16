@@ -17,7 +17,51 @@ class HomeViewBody extends StatelessWidget {
           padding: EdgeInsets.only(left: 30.0, top: 49),
           child: Text('Best Seller', style: Styles.titleMedium),
         ),
+        BestSellerItem(),
       ],
+    );
+  }
+}
+
+class BestSellerItem extends StatelessWidget {
+  const BestSellerItem({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 30.0),
+      child: Row(
+        children: [
+          SizedBox(
+            height: 105,
+            child: AspectRatio(
+              aspectRatio: 70 / 105,
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                ),
+                child: Image.asset(
+                  'assets/images/tset_image.png',
+                ),
+              ),
+            ),
+          ),
+          const Padding(
+            padding: EdgeInsets.only(left: 30.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Harry Potter and the Goblet of Fire',
+                  textWidthBasis: TextWidthBasis.parent,
+                  style: Styles.bestSellerTitle,
+                ),
+              ],
+            ),
+          )
+        ],
+      ),
     );
   }
 }
