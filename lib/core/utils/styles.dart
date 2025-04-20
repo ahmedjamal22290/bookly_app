@@ -14,9 +14,10 @@ abstract class Styles {
     fontSize: 16,
     fontWeight: FontWeight.w500,
   );
-  static const bestSellerTitle = TextStyle(
+  static const textStyle20 = TextStyle(
     fontSize: 20,
     fontWeight: FontWeight.normal,
+    color: Colors.white,
     fontFamily: kGtSectra,
   );
   static const textStyle30 = TextStyle(
