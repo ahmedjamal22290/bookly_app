@@ -15,7 +15,7 @@ class HomeViewBody extends StatelessWidget {
         FeaturedBookListView(),
         Padding(
           padding: EdgeInsets.only(left: 30.0, top: 49),
-          child: Text('Best Seller', style: Styles.titleMedium),
+          child: Text('Best Seller', style: Styles.textStyle18),
         ),
         BestSellerItem(),
       ],
@@ -55,6 +55,7 @@ class BestSellerItem extends StatelessWidget {
                 Text(
                   'Harry Potter and the Goblet of Fire',
                   textWidthBasis: TextWidthBasis.parent,
+                  maxLines: 2,
                   style: Styles.bestSellerTitle,
                 ),
               ],
