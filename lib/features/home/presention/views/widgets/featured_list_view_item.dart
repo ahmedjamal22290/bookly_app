@@ -1,3 +1,4 @@
+import 'package:bookly_app/core/utils/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -10,7 +11,7 @@ class FeaturedListViewItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push('/bookDetails');
+        GoRouter.of(context).push(AppRouter.kBookDetailsViewPath);
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 14),
