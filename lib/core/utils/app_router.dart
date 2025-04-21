@@ -1,6 +1,7 @@
 import 'package:bookly_app/features/home/presention/views/book_details_view.dart';
 import 'package:bookly_app/features/home/presention/views/home_view.dart';
 import 'package:bookly_app/features/splash/presention/views/splash_view.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 abstract class AppRouter {
@@ -13,11 +14,35 @@ abstract class AppRouter {
     ),
     GoRoute(
       path: kHomeViewPath,
-      builder: (context, state) => const HomeView(),
+      pageBuilder: (context, state) {
+        return CustomTransitionPage(
+          key: state.pageKey,
+          child: const HomeView(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return FadeTransition(
+              opacity:
+                  CurveTween(curve: Curves.easeInOutCirc).animate(animation),
+              child: child,
+            );
+          },
+        );
+      },
     ),
     GoRoute(
       path: kBookDetailsViewPath,
-      builder: (context, state) => const BookDetailsView(),
+      pageBuilder: (context, state) {
+        return CustomTransitionPage(
+          key: state.pageKey,
+          child: const BookDetailsView(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return FadeTransition(
+              opacity:
+                  CurveTween(curve: Curves.easeInOutCirc).animate(animation),
+              child: child,
+            );
+          },
+        );
+      },
     ),
   ]);
 }
