@@ -31,7 +31,10 @@ class BookDetailsViewBody extends StatelessWidget {
             ),
           ),
         ),
-        const Center(child: BookRatingWidget())
+        const Center(
+            child: BookRatingWidget(
+          mainAxisAlignment: MainAxisAlignment.center,
+        ))
       ],
     );
   }
