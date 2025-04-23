@@ -2,6 +2,7 @@ import 'package:bookly_app/core/utils/styles.dart';
 import 'package:bookly_app/features/home/presention/views/widgets/book_action_button.dart';
 import 'package:bookly_app/features/home/presention/views/widgets/book_details_appbar.dart';
 import 'package:bookly_app/features/home/presention/views/widgets/book_rating_widget.dart';
+import 'package:bookly_app/features/home/presention/views/widgets/sugession_list_view.dart';
 import 'package:bookly_app/features/home/presention/views/widgets/top_image_book_details.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +12,7 @@ class BookDetailsViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      // mainAxisAlignment: MainAxisAlignment.start,
       children: [
         const BookDetailsAppBar(),
         const TopImageBookDetails(),
@@ -36,7 +38,18 @@ class BookDetailsViewBody extends StatelessWidget {
             child: BookRatingWidget(
           mainAxisAlignment: MainAxisAlignment.center,
         )),
-        const BooksButtonAction()
+        const BooksButtonAction(),
+        SizedBox(height: MediaQuery.of(context).size.height * 0.0603),
+        Container(
+          width: MediaQuery.of(context).size.width,
+          padding: const EdgeInsets.only(left: 30, bottom: 16),
+          child: Text(
+            'You can also like',
+            textAlign: TextAlign.left,
+            style: Styles.textStyle14.copyWith(fontWeight: FontWeight.w600),
+          ),
+        ),
+        const SugessionListView(),
       ],
     );
   }
