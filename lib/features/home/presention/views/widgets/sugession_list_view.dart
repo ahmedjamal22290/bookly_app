@@ -9,7 +9,7 @@ class SugessionListView extends StatelessWidget {
     return Container(
       height: MediaQuery.of(context).size.height * 0.1379,
       width: MediaQuery.of(context).size.width,
-      padding: const EdgeInsets.only(left: 30),
+      margin: const EdgeInsets.only(left: 30, bottom: 40),
       child: ListView.builder(
           itemCount: 20,
           scrollDirection: Axis.horizontal,
