@@ -7,13 +7,13 @@ class ViewsManagerCubit extends Cubit<ViewsManagerState> {
   ViewsManagerCubit() : super(ViewsManagerInitial());
   void navigateToPage(int pageNum) {
     if (pageNum == 0) {
-      emit(CombinedView());
+      emit(CombinedViewState());
     } else if (pageNum == 1) {
-      emit(SavedView());
+      emit(SavedViewState());
     } else if (pageNum == 2) {
-      emit(AudioView());
+      emit(AudioViewState());
     } else {
-      emit(ProfileView());
+      emit(ProfileViewState());
     }
   }
 }

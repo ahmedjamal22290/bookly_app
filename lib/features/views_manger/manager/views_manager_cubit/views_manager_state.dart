@@ -5,10 +5,10 @@ abstract class ViewsManagerState {}
 
 final class ViewsManagerInitial extends ViewsManagerState {}
 
-final class CombinedView extends ViewsManagerState {}
+final class CombinedViewState extends ViewsManagerState {}
 
-final class SavedView extends ViewsManagerState {}
+final class SavedViewState extends ViewsManagerState {}
 
-final class AudioView extends ViewsManagerState {}
+final class AudioViewState extends ViewsManagerState {}
 
-final class ProfileView extends ViewsManagerState {}
+final class ProfileViewState extends ViewsManagerState {}
