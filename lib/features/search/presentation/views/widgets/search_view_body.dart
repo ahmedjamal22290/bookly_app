@@ -1,7 +1,6 @@
-import 'package:bookly_app/core/utils/app_router.dart';
+import 'package:bookly_app/features/search/presentation/views/widgets/custom_search_text_field.dart';
 import 'package:bookly_app/features/search/presentation/views/widgets/search_view_appBar.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class SearchViewBody extends StatelessWidget {
   const SearchViewBody({super.key});
@@ -12,6 +11,8 @@ class SearchViewBody extends StatelessWidget {
       child: Column(
         children: [
           SearchViewAppBar(),
+          SizedBox(height: 40),
+          CustomSearchTextField()
         ],
       ),
     );
