@@ -5,12 +5,13 @@ class CustomSearchTextField extends StatelessWidget {
   const CustomSearchTextField({
     super.key,
   });
-
+// final TextEditingController _controller =TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15.0),
       child: TextFormField(
+        // controller:_controller ,
         style: const TextStyle(color: Color(0xffE0D6F5)),
         decoration: InputDecoration(
           filled: true,
