@@ -4,7 +4,7 @@ import 'package:meta/meta.dart';
 part 'views_manager_state.dart';
 
 class ViewsManagerCubit extends Cubit<ViewsManagerState> {
-  ViewsManagerCubit() : super(ViewsManagerInitial());
+  ViewsManagerCubit() : super(CombinedViewState());
   void navigateToPage(int pageNum) {
     if (pageNum == 0) {
       emit(CombinedViewState());

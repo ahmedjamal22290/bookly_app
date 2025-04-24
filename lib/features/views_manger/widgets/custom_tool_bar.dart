@@ -1,6 +1,8 @@
 import 'dart:ui';
 
+import 'package:bookly_app/features/views_manger/manager/views_manager_cubit/views_manager_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 class CustomToolBar extends StatefulWidget {
@@ -37,9 +39,11 @@ class _CustomToolBarState extends State<CustomToolBar> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                GestureDetector(
+                InkWell(
                   onTap: () {
                     index = 0;
+                    BlocProvider.of<ViewsManagerCubit>(context)
+                        .navigateToPage(0);
                     setState(() {});
                   },
                   child: SvgPicture.asset(
@@ -53,9 +57,11 @@ class _CustomToolBarState extends State<CustomToolBar> {
                         BlendMode.srcATop),
                   ),
                 ),
-                GestureDetector(
+                InkWell(
                   onTap: () {
                     index = 1;
+                    BlocProvider.of<ViewsManagerCubit>(context)
+                        .navigateToPage(1);
                     setState(() {});
                   },
                   child: SvgPicture.asset(
@@ -69,9 +75,11 @@ class _CustomToolBarState extends State<CustomToolBar> {
                         BlendMode.srcATop),
                   ),
                 ),
-                GestureDetector(
+                InkWell(
                   onTap: () {
                     index = 2;
+                    BlocProvider.of<ViewsManagerCubit>(context)
+                        .navigateToPage(2);
                     setState(() {});
                   },
                   child: SvgPicture.asset(
@@ -85,9 +93,11 @@ class _CustomToolBarState extends State<CustomToolBar> {
                         BlendMode.srcATop),
                   ),
                 ),
-                GestureDetector(
+                InkWell(
                   onTap: () {
                     index = 3;
+                    BlocProvider.of<ViewsManagerCubit>(context)
+                        .navigateToPage(3);
                     setState(() {});
                   },
                   child: Image.asset(
