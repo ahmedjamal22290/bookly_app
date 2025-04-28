@@ -19,9 +19,9 @@ class HomeRepoImpl implements HomeRepo {
       List<BookModel> items = [];
       for (var element in jsonData['items']) {
         items.add(BookModel.fromJson(element));
-
-        log(items.toString());
+        // log(items[0].toString());
       }
+      log(items[0].toString());
       return right(items);
     } on Exception catch (e) {
       return left(ServerFailure());
@@ -30,7 +30,6 @@ class HomeRepoImpl implements HomeRepo {
 
   @override
   Future<Either<Failures, List<BookModel>>> fetchFeaturedBooks() {
-    // TODO: implement fetchFeaturedBooks
     throw UnimplementedError();
   }
 }
