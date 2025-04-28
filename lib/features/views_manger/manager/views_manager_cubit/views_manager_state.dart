@@ -1,6 +1,5 @@
 part of 'views_manager_cubit.dart';
 
-@immutable
 abstract class ViewsManagerState {}
 
 final class ViewsManagerInitial extends ViewsManagerState {}
