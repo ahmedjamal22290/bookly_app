@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:bookly_app/features/Audio/presentation/views/Audio_view.dart';
 import 'package:bookly_app/features/Saved/presentation/views/saved_view.dart';
 import 'package:bookly_app/features/home/presentation/views/home_view.dart';
@@ -45,7 +43,7 @@ class _CustomPageViewState extends State<CustomPageView> {
         return PageView(
           onPageChanged: (pageIndex) {
             BlocProvider.of<ViewsManagerCubit>(context).index = pageIndex;
-            log(pageIndex.toString());
+
             BlocProvider.of<ViewsManagerCubit>(context).whatIndex();
           },
           controller: _pageController,
