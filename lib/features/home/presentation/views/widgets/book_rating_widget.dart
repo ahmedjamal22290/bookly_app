@@ -25,15 +25,17 @@ class BookRatingWidget extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: 6.3, right: 9),
           child: Text(
-            volumeInfo!.averageRating == null ||
-                    volumeInfo!.averageRating == 'null'
-                ? 'oo'
-                : volumeInfo!.averageRating!,
+            volumeInfo == null
+                ? "N/A"
+                : volumeInfo!.averageRating == null ||
+                        volumeInfo!.averageRating == 'null'
+                    ? 'oo'
+                    : volumeInfo!.averageRating!,
             style: Styles.textStyle16.copyWith(color: Colors.white),
           ),
         ),
         Text(
-          '(${volumeInfo!.pageCount.toString()})',
+          '(${volumeInfo == null ? "N/A" : volumeInfo!.pageCount.toString()})',
           style: Styles.textStyle14.copyWith(color: const Color(0xff888590)),
         ),
       ],
