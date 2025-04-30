@@ -14,7 +14,7 @@ class HomeRepoImpl implements HomeRepo {
     try {
       Map<String, dynamic> jsonData = await apiService.get(
           endPoints:
-              'volumes?Filtering=free-ebooks&sorting=newest&q=subject:global');
+              'volumes?Filtering=free-ebooks&sorting=newest&q=communication');
       List<BookModel> items = [];
       for (var element in jsonData['items']) {
         items.add(BookModel.fromJson(element));

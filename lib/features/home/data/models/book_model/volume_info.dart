@@ -23,8 +23,12 @@ class VolumeInfo extends Equatable {
   final String? previewLink;
   final String? infoLink;
   final String? canonicalVolumeLink;
+  final String? pageCount;
+  final String? averageRating;
 
   const VolumeInfo({
+    this.averageRating,
+    this.pageCount,
     this.imageLinks,
     this.title,
     this.subtitle,
@@ -51,6 +55,8 @@ class VolumeInfo extends Equatable {
             ?.map((e) => e as String)
             .toList(),
         publishedDate: json['publishedDate'] as String?,
+        averageRating: json['averageRating'].toString(),
+        pageCount: json['pageCount'].toString(),
         industryIdentifiers: (json['industryIdentifiers'] as List<dynamic>?)
             ?.map((e) => IndustryIdentifier.fromJson(e as Map<String, dynamic>))
             .toList(),
@@ -83,6 +89,7 @@ class VolumeInfo extends Equatable {
         'subtitle': subtitle,
         'authors': authors,
         'publishedDate': publishedDate,
+        'averageRating': averageRating,
         'industryIdentifiers':
             industryIdentifiers?.map((e) => e.toJson()).toList(),
         'readingModes': readingModes?.toJson(),
@@ -91,6 +98,7 @@ class VolumeInfo extends Equatable {
         'maturityRating': maturityRating,
         'allowAnonLogging': allowAnonLogging,
         'contentVersion': contentVersion,
+        'pageCount': pageCount,
         'panelizationSummary': panelizationSummary?.toJson(),
         'imageLinks': imageLinks?.toJson(),
         'language': language,
@@ -109,12 +117,14 @@ class VolumeInfo extends Equatable {
       industryIdentifiers,
       readingModes,
       printType,
+      averageRating,
       categories,
       maturityRating,
       allowAnonLogging,
       contentVersion,
       panelizationSummary,
       language,
+      pageCount,
       previewLink,
       imageLinks,
       infoLink,

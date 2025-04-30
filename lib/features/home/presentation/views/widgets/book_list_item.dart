@@ -1,13 +1,14 @@
 import 'package:bookly_app/constants.dart';
 import 'package:bookly_app/core/utils/app_router.dart';
 import 'package:bookly_app/core/utils/styles.dart';
+import 'package:bookly_app/features/home/data/models/book_model/book_model.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/book_rating_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class BookListItem extends StatelessWidget {
-  const BookListItem({super.key});
-
+  const BookListItem({super.key, required this.bookModel});
+  final BookModel bookModel;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -26,8 +27,9 @@ class BookListItem extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
                   ),
-                  child: Image.asset(
-                    'assets/images/tset_image.png',
+                  child: Image.network(
+                    bookModel.volumeInfo!.imageLinks?.smallThumbnail ??
+                        "https://toppng.com/uploads/thumbnail/erreur-404-11550708744ghwqbirawf.png",
                   ),
                 ),
               ),
@@ -41,7 +43,7 @@ class BookListItem extends StatelessWidget {
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.784 * 0.659,
                       child: Text(
-                        'Harry Potter and the Goblet of Fire',
+                        bookModel.volumeInfo!.title!,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,
                         style: Styles.textStyle20.copyWith(
@@ -52,7 +54,7 @@ class BookListItem extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(top: 3.0),
                       child: Text(
-                        'J.K. Rowling',
+                        bookModel.volumeInfo?.authors?[0] ?? 'none',
                         style: Styles.textStyle14.copyWith(
                           color: const Color(0xffb7b6bc),
                         ),
@@ -61,13 +63,17 @@ class BookListItem extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          '19.99 €',
+                          bookModel.saleInfo!.saleability == "NOT_FOR_SALE"
+                              ? '0.0'
+                              : "${bookModel.saleInfo!.amount!} EG",
                           style: Styles.textStyle20.copyWith(
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                         const Spacer(),
-                        const BookRatingWidget(),
+                        BookRatingWidget(
+                          volumeInfo: bookModel.volumeInfo!,
+                        ),
                       ],
                     ),
                   ],

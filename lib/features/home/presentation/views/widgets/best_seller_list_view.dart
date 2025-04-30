@@ -19,7 +19,9 @@ class BestSellerListView extends StatelessWidget {
                 return SizedBox(
                     height: MediaQuery.of(context).size.height * 0.0728);
               }
-              return const BookListItem();
+              return BookListItem(
+                bookModel: state.books[index],
+              );
             }, childCount: state.books.length),
           );
         } else if (state is NewestBooksFailureState) {
