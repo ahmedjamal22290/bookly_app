@@ -32,7 +32,7 @@ class HomeRepoImpl implements HomeRepo {
   Future<Either<Failures, List<BookModel>>> fetchFeaturedBooks() async {
     try {
       Map<String, dynamic> jsonData = await ApiService(Dio())
-          .get(endPoints: 'volumes?Filtering=free-ebooks&q=subject:public');
+          .get(endPoints: 'volumes?Filtering=free-ebooks&q=global');
       List<BookModel> items = [];
       for (var element in jsonData['items']) {
         items.add(BookModel.fromJson(element));

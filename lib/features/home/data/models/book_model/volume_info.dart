@@ -1,6 +1,5 @@
 import 'package:bookly_app/features/home/data/models/book_model/image_links.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 
 import 'industry_identifier.dart';
 import 'panelization_summary.dart';

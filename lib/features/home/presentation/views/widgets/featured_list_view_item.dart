@@ -24,10 +24,11 @@ class FeaturedListViewItem extends StatelessWidget {
             decoration: BoxDecoration(
               image: DecorationImage(
                 fit: BoxFit.fill,
-                image: AssetImage(bookModel.volumeInfo!.imageLinks!.thumbnail ??
+                image: NetworkImage(bookModel
+                        .volumeInfo!.imageLinks?.thumbnail ??
                     "https://toppng.com/uploads/thumbnail/erreur-404-11550708744ghwqbirawf.png"),
               ),
-              color: Colors.green,
+              color: Colors.deepPurple,
               borderRadius: BorderRadius.circular(13),
             ),
           ),

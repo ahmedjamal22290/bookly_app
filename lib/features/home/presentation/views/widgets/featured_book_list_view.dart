@@ -11,7 +11,7 @@ class FeaturedBookListView extends StatelessWidget {
     return BlocBuilder<FeaturedBooksCubit, FeaturedBooksState>(
       builder: (context, state) {
         if (state is FeaturedBooksLoadingState) {
-          return const CircularProgressIndicator();
+          return const Center(child: CircularProgressIndicator());
         } else if (state is FeaturedBooksSuccessState) {
           return Padding(
             padding: const EdgeInsets.only(left: 15.0),
@@ -28,11 +28,11 @@ class FeaturedBookListView extends StatelessWidget {
             ),
           );
         } else if (state is FeaturedBooksFailureState) {
-          return Container(
+          return Center(
             child: Text(state.errMessage),
           );
         } else {
-          return Container(child: Text('Oops there was an error'));
+          return const Center(child: Text('Oops there was an error'));
         }
       },
     );
