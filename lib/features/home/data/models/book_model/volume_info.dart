@@ -1,4 +1,6 @@
+import 'package:bookly_app/features/home/data/models/book_model/image_links.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 
 import 'industry_identifier.dart';
 import 'panelization_summary.dart';
@@ -13,6 +15,7 @@ class VolumeInfo extends Equatable {
   final ReadingModes? readingModes;
   final String? printType;
   final List<String>? categories;
+  final ImageLinks? imageLinks;
   final String? maturityRating;
   final bool? allowAnonLogging;
   final String? contentVersion;
@@ -23,6 +26,7 @@ class VolumeInfo extends Equatable {
   final String? canonicalVolumeLink;
 
   const VolumeInfo({
+    this.imageLinks,
     this.title,
     this.subtitle,
     this.authors,
@@ -66,6 +70,9 @@ class VolumeInfo extends Equatable {
             ? null
             : PanelizationSummary.fromJson(
                 json['panelizationSummary'] as Map<String, dynamic>),
+        imageLinks: json['imageLinks'] == null
+            ? null
+            : ImageLinks.fromJson(json['imageLinks'] as Map<String, dynamic>),
         language: json['language'] as String?,
         previewLink: json['previewLink'] as String?,
         infoLink: json['infoLink'] as String?,
@@ -86,6 +93,7 @@ class VolumeInfo extends Equatable {
         'allowAnonLogging': allowAnonLogging,
         'contentVersion': contentVersion,
         'panelizationSummary': panelizationSummary?.toJson(),
+        'imageLinks': imageLinks?.toJson(),
         'language': language,
         'previewLink': previewLink,
         'infoLink': infoLink,
@@ -109,6 +117,7 @@ class VolumeInfo extends Equatable {
       panelizationSummary,
       language,
       previewLink,
+      imageLinks,
       infoLink,
       canonicalVolumeLink,
     ];

@@ -1,12 +1,13 @@
 import 'package:bookly_app/core/utils/app_router.dart';
+import 'package:bookly_app/features/home/data/models/book_model/book_model.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class FeaturedListViewItem extends StatelessWidget {
   const FeaturedListViewItem({
-    super.key,
+    super.key, required this.bookModel,
   });
-
+  final BookModel bookModel;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -20,9 +21,9 @@ class FeaturedListViewItem extends StatelessWidget {
           child: Container(
             width: MediaQuery.of(context).size.width / 2.5,
             decoration: BoxDecoration(
-              image: const DecorationImage(
+              image:  DecorationImage(
                 fit: BoxFit.fill,
-                image: AssetImage('assets/images/tset_image.png'),
+                image: AssetImage(bookModel.volumeInfo.),
               ),
               color: Colors.green,
               borderRadius: BorderRadius.circular(13),
