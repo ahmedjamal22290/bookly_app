@@ -5,7 +5,8 @@ import 'package:go_router/go_router.dart';
 
 class FeaturedListViewItem extends StatelessWidget {
   const FeaturedListViewItem({
-    super.key, required this.bookModel,
+    super.key,
+    required this.bookModel,
   });
   final BookModel bookModel;
   @override
@@ -21,9 +22,10 @@ class FeaturedListViewItem extends StatelessWidget {
           child: Container(
             width: MediaQuery.of(context).size.width / 2.5,
             decoration: BoxDecoration(
-              image:  DecorationImage(
+              image: DecorationImage(
                 fit: BoxFit.fill,
-                image: AssetImage(bookModel.volumeInfo.),
+                image: AssetImage(bookModel.volumeInfo!.imageLinks!.thumbnail ??
+                    "https://toppng.com/uploads/thumbnail/erreur-404-11550708744ghwqbirawf.png"),
               ),
               color: Colors.green,
               borderRadius: BorderRadius.circular(13),

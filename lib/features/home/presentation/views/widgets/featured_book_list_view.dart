@@ -21,7 +21,9 @@ class FeaturedBookListView extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   itemCount: state.books.length,
                   itemBuilder: (context, index) {
-                    return const FeaturedListViewItem();
+                    return FeaturedListViewItem(
+                      bookModel: state.books[index],
+                    );
                   }),
             ),
           );
