@@ -14,15 +14,18 @@ class BestSellerListView extends StatelessWidget {
       builder: (context, state) {
         if (state is NewestBooksSuccessState) {
           return SliverList(
-            delegate: SliverChildBuilderDelegate((context, index) {
-              if (index == state.books.length - 1) {
-                return SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.0728);
-              }
-              return BookListItem(
-                bookModel: state.books[index],
-              );
-            }, childCount: state.books.length),
+            delegate: SliverChildBuilderDelegate(
+              (context, index) {
+                if (index == state.books.length - 1) {
+                  return SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.0728);
+                }
+                return BookListItem(
+                  bookModel: state.books[index],
+                );
+              },
+              childCount: state.books.length,
+            ),
           );
         } else if (state is NewestBooksFailureState) {
           return SliverToBoxAdapter(
