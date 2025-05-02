@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bookly_app/core/widgets/custom_error_text.dart';
 import 'package:bookly_app/core/widgets/custom_loading_indicator.dart';
 import 'package:bookly_app/features/home/presentation/manager/featured_books_cubit/featured_books_cubit.dart';
@@ -5,8 +7,22 @@ import 'package:bookly_app/features/home/presentation/views/widgets/featured_lis
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class FeaturedBookListView extends StatelessWidget {
+class FeaturedBookListView extends StatefulWidget {
   const FeaturedBookListView({super.key});
+
+  @override
+  State<FeaturedBookListView> createState() => _FeaturedBookListViewState();
+}
+
+class _FeaturedBookListViewState extends State<FeaturedBookListView> {
+  final ScrollController _scrollController = ScrollController();
+  late Timer _timer;
+  int currIndex = 0;
+  @override
+  void initState() {
+    super.initState();
+    _startAutoScroll();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +36,7 @@ class FeaturedBookListView extends StatelessWidget {
             child: SizedBox(
               height: MediaQuery.of(context).size.height / 3.625,
               child: ListView.builder(
+                  controller: _scrollController,
                   physics: const BouncingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
                   itemCount: state.books.length,
@@ -35,5 +52,34 @@ class FeaturedBookListView extends StatelessWidget {
         }
       },
     );
+  }
+
+  void _startAutoScroll() {
+    _timer = Timer.periodic(const Duration(seconds: 3), (timer) {
+      if (_scrollController.hasClients) {
+        double maxScroll = _scrollController.position.maxScrollExtent;
+        setState(() {
+          currIndex++;
+        });
+        double nextScroll = currIndex * MediaQuery.of(context).size.width / 2.5;
+        if (nextScroll >= maxScroll) {
+          currIndex = 0;
+          setState(() {});
+          _scrollController.jumpTo(0);
+        } else {
+          _scrollController.animateTo(
+            nextScroll,
+            duration: Duration(milliseconds: 350),
+            curve: Curves.easeOut,
+          );
+        }
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
   }
 }
