@@ -42,6 +42,8 @@ class _FeaturedBookListViewState extends State<FeaturedBookListView> {
                   itemCount: state.books.length,
                   itemBuilder: (context, index) {
                     return FeaturedListViewItem(
+                      key: ValueKey(index),
+                      selected: index == currIndex,
                       bookModel: state.books[index],
                     );
                   }),
@@ -55,21 +57,22 @@ class _FeaturedBookListViewState extends State<FeaturedBookListView> {
   }
 
   void _startAutoScroll() {
-    _timer = Timer.periodic(const Duration(seconds: 3), (timer) {
+    _timer = Timer.periodic(const Duration(seconds: 5), (timer) {
       if (_scrollController.hasClients) {
         double maxScroll = _scrollController.position.maxScrollExtent;
         setState(() {
           currIndex++;
         });
-        double nextScroll = currIndex * MediaQuery.of(context).size.width / 2.5;
+        double nextScroll = _scrollController.offset +
+            MediaQuery.of(context).size.width * (150 / 375);
         if (nextScroll >= maxScroll) {
           currIndex = 0;
           setState(() {});
           _scrollController.jumpTo(0);
         } else {
           _scrollController.animateTo(
-            nextScroll,
-            duration: Duration(milliseconds: 350),
+            nextScroll + 28,
+            duration: const Duration(milliseconds: 350),
             curve: Curves.easeOut,
           );
         }
