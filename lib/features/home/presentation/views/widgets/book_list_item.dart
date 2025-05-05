@@ -22,18 +22,21 @@ class BookListItem extends StatelessWidget {
         padding: const EdgeInsets.only(left: 30.0, right: 30, bottom: 20),
         child: Row(
           children: [
-            SizedBox(
-              height: 105,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(5),
-                child: AspectRatio(
-                  aspectRatio: 70 / 105,
-                  child: CachedNetworkImage(
-                    fit: BoxFit.fill,
-                    imageUrl: bookModel.volumeInfo!.imageLinks!.thumbnail!,
-                    errorWidget: (context, url, error) {
-                      return const CustomImageError();
-                    },
+            Hero(
+              tag: bookModel.volumeInfo!.imageLinks!.thumbnail!,
+              child: SizedBox(
+                height: 105,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(5),
+                  child: AspectRatio(
+                    aspectRatio: 70 / 105,
+                    child: CachedNetworkImage(
+                      fit: BoxFit.fill,
+                      imageUrl: bookModel.volumeInfo!.imageLinks!.thumbnail!,
+                      errorWidget: (context, url, error) {
+                        return const CustomImageError();
+                      },
+                    ),
                   ),
                 ),
               ),

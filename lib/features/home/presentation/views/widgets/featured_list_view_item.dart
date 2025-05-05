@@ -31,12 +31,15 @@ class FeaturedListViewItem extends StatelessWidget {
             borderRadius: BorderRadius.circular(13),
             child: AspectRatio(
               aspectRatio: selected ? 150 / 224 : 129.21 / 193.3,
-              child: CachedNetworkImage(
-                fit: BoxFit.fill,
-                imageUrl: bookModel.volumeInfo!.imageLinks!.thumbnail!,
-                errorWidget: (context, url, error) {
-                  return const CustomImageError();
-                },
+              child: Hero(
+                tag: bookModel.volumeInfo!.imageLinks!.thumbnail!,
+                child: CachedNetworkImage(
+                  fit: BoxFit.fill,
+                  imageUrl: bookModel.volumeInfo!.imageLinks!.thumbnail!,
+                  errorWidget: (context, url, error) {
+                    return const CustomImageError();
+                  },
+                ),
               ),
             ),
           ),
