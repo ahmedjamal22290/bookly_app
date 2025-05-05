@@ -3,6 +3,7 @@ import 'package:bookly_app/core/utils/app_router.dart';
 import 'package:bookly_app/core/utils/styles.dart';
 import 'package:bookly_app/features/home/data/models/book_model/book_model.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/book_rating_widget.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -22,15 +23,16 @@ class BookListItem extends StatelessWidget {
           children: [
             SizedBox(
               height: 105,
-              child: AspectRatio(
-                aspectRatio: 70 / 105,
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  child: Image.network(
-                    bookModel.volumeInfo!.imageLinks?.smallThumbnail ??
-                        "https://toppng.com/uploads/thumbnail/erreur-404-11550708744ghwqbirawf.png",
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(5),
+                child: AspectRatio(
+                  aspectRatio: 70 / 105,
+                  child: CachedNetworkImage(
+                    fit: BoxFit.fill,
+                    imageUrl: bookModel.volumeInfo!.imageLinks!.thumbnail!,
+                    errorWidget: (context, url, error) {
+                      return const Icon(Icons.error_outline);
+                    },
                   ),
                 ),
               ),
