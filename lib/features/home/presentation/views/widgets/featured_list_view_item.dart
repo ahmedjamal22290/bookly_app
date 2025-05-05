@@ -16,7 +16,8 @@ class FeaturedListViewItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(AppRouter.kBookDetailsViewPath);
+        GoRouter.of(context)
+            .push(AppRouter.kBookDetailsViewPath, extra: bookModel);
       },
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 150),

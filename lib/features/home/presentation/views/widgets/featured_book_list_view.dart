@@ -16,6 +16,7 @@ class FeaturedBookListView extends StatefulWidget {
 
 class _FeaturedBookListViewState extends State<FeaturedBookListView> {
   final ScrollController _scrollController = ScrollController();
+  // ignore: unused_field
   late Timer _timer;
   int currIndex = 0;
   @override

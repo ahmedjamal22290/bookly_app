@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class SugessionListItem extends StatelessWidget {
-  const SugessionListItem({super.key});
-
+  const SugessionListItem({super.key, required this.imageUrl});
+  final String imageUrl;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -13,9 +13,11 @@ class SugessionListItem extends StatelessWidget {
           aspectRatio: 70 / 112,
           child: Container(
             decoration: BoxDecoration(
-                color: Colors.pink, borderRadius: BorderRadius.circular(8)),
+              color: Colors.pink,
+              borderRadius: BorderRadius.circular(8),
+            ),
             child: Image.asset(
-              'assets/images/tset_image.png',
+              imageUrl,
               fit: BoxFit.fill,
             ),
           ),
