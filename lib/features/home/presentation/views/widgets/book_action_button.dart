@@ -1,9 +1,10 @@
 import 'package:bookly_app/core/utils/styles.dart';
+import 'package:bookly_app/features/home/data/models/book_model/book_model.dart';
 import 'package:flutter/material.dart';
 
 class BooksButtonAction extends StatelessWidget {
-  const BooksButtonAction({super.key});
-
+  const BooksButtonAction({super.key, required this.bookModel});
+  final BookModel bookModel;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -28,7 +29,9 @@ class BooksButtonAction extends StatelessWidget {
               ),
               child: Center(
                 child: Text(
-                  '19.99€',
+                  bookModel.saleInfo!.saleability == "NOT_FOR_SALE"
+                      ? 'Free'
+                      : "${bookModel.saleInfo!.amount!} EG",
                   style: Styles.textStyle18.copyWith(
                       color: Colors.black, fontWeight: FontWeight.bold),
                 ),
@@ -52,7 +55,9 @@ class BooksButtonAction extends StatelessWidget {
               ),
               child: Center(
                 child: Text(
-                  'Free preview',
+                  bookModel.volumeInfo!.previewLink == null
+                      ? "There is no Preview"
+                      : 'Free preview',
                   style: Styles.textStyle16.copyWith(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class TopImageBookDetails extends StatelessWidget {
@@ -7,18 +8,19 @@ class TopImageBookDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 243,
-      child: AspectRatio(
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(22),
+        child: AspectRatio(
           aspectRatio: 162 / 243,
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.red,
-              borderRadius: BorderRadius.circular(22),
-            ),
-            child: Image.asset(
-              'assets/images/tset_image.png',
-              fit: BoxFit.fill,
-            ),
-          )),
+          child: CachedNetworkImage(
+            imageUrl: imageUrl,
+            fit: BoxFit.fill,
+            errorWidget: (context, url, error) {
+              return const Icon(Icons.error);
+            },
+          ),
+        ),
+      ),
     );
   }
 }

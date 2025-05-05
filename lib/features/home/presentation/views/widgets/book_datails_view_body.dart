@@ -9,7 +9,7 @@ import 'package:bookly_app/features/home/presentation/views/widgets/top_image_bo
 import 'package:flutter/material.dart';
 
 class BookDetailsViewBody extends StatelessWidget {
-  const BookDetailsViewBody({super.key, this.bookModel});
+  const BookDetailsViewBody({super.key, required this.bookModel});
   final BookModel? bookModel;
   @override
   Widget build(BuildContext context) {
@@ -19,9 +19,12 @@ class BookDetailsViewBody extends StatelessWidget {
         child: Column(
           children: [
             const BookDetailsAppBar(),
-            const TopImageBookDetails(),
+            TopImageBookDetails(
+              imageUrl: bookModel!.volumeInfo!.imageLinks!.thumbnail!,
+            ),
             Padding(
-              padding: const EdgeInsets.only(bottom: 4.0, top: 43),
+              padding: const EdgeInsets.only(
+                  bottom: 4.0, top: 43, right: 10, left: 10),
               child: Text(
                 bookModel!.volumeInfo!.title!,
                 textAlign: TextAlign.center,
@@ -44,7 +47,9 @@ class BookDetailsViewBody extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               volumeInfo: bookModel!.volumeInfo!,
             )),
-            const BooksButtonAction(),
+            BooksButtonAction(
+              bookModel: bookModel!,
+            ),
             Expanded(
                 child: SizedBox(
                     height: MediaQuery.of(context).size.height * 0.0603)),
