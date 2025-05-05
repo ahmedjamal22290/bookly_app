@@ -1,4 +1,5 @@
 // ignore_for_file: file_names
+import 'package:bookly_app/core/utils/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -22,10 +23,13 @@ class SearchViewAppBar extends StatelessWidget {
             ),
           ),
           const Spacer(),
-          Image.asset(
-            'assets/images/Logo.png',
-            height: 35,
-            width: 115,
+          Hero(
+            tag: "BooklyLogo",
+            child: Image.asset(
+              AssetsData.logo,
+              height: 35,
+              width: 115,
+            ),
           ),
           const Spacer()
         ],

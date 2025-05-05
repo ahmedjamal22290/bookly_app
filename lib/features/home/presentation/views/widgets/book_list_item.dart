@@ -69,17 +69,25 @@ class BookListItem extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        Text(
-                          bookModel.saleInfo!.saleability == "NOT_FOR_SALE"
-                              ? 'Free'
-                              : "${bookModel.saleInfo!.amount!} EG",
-                          style: Styles.textStyle20.copyWith(
-                            fontWeight: FontWeight.bold,
+                        Hero(
+                          tag:
+                              "${bookModel.volumeInfo!.imageLinks!.thumbnail!}price",
+                          child: Text(
+                            bookModel.saleInfo!.saleability == "NOT_FOR_SALE"
+                                ? 'Free'
+                                : "${bookModel.saleInfo!.amount!} EG",
+                            style: Styles.textStyle20.copyWith(
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                         const Spacer(),
-                        BookRatingWidget(
-                          volumeInfo: bookModel.volumeInfo!,
+                        Hero(
+                          tag:
+                              "${bookModel.volumeInfo!.imageLinks!.thumbnail!}rating",
+                          child: BookRatingWidget(
+                            volumeInfo: bookModel.volumeInfo!,
+                          ),
                         ),
                       ],
                     ),
