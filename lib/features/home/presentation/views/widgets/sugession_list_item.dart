@@ -1,4 +1,5 @@
 import 'package:bookly_app/core/utils/app_router.dart';
+import 'package:bookly_app/core/widgets/custom_image_error.dart';
 import 'package:bookly_app/features/home/data/models/book_model/book_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +27,7 @@ class SugessionListItem extends StatelessWidget {
                 imageUrl: bookModel.volumeInfo!.imageLinks!.smallThumbnail!,
                 fit: BoxFit.fill,
                 errorWidget: (context, url, error) {
-                  return const Icon(Icons.error_outline);
+                  return const CustomImageError();
                 },
               ),
             ),

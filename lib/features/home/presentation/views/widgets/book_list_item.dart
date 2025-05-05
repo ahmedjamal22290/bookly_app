@@ -1,6 +1,7 @@
 import 'package:bookly_app/constants.dart';
 import 'package:bookly_app/core/utils/app_router.dart';
 import 'package:bookly_app/core/utils/styles.dart';
+import 'package:bookly_app/core/widgets/custom_image_error.dart';
 import 'package:bookly_app/features/home/data/models/book_model/book_model.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/book_rating_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -31,7 +32,7 @@ class BookListItem extends StatelessWidget {
                     fit: BoxFit.fill,
                     imageUrl: bookModel.volumeInfo!.imageLinks!.thumbnail!,
                     errorWidget: (context, url, error) {
-                      return const Icon(Icons.error_outline);
+                      return const CustomImageError();
                     },
                   ),
                 ),

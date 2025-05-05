@@ -34,7 +34,7 @@ class BookDetailsViewBody extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(bottom: 14.0),
               child: Text(
-                bookModel!.volumeInfo!.authors![0],
+                bookModel!.volumeInfo!.authors?[0] ?? "N/A",
                 style: Styles.textStyle18.copyWith(
                   color: const Color(0xffb7b6bc),
                   fontWeight: FontWeight.w500,
