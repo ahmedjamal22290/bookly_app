@@ -36,7 +36,9 @@ class BookRatingWidget extends StatelessWidget {
         ),
         Text(
           '(${volumeInfo == null ? "N/A" : volumeInfo!.pageCount.toString()})',
-          style: Styles.textStyle14.copyWith(color: const Color(0xff888590)),
+          style: Styles.textStyle14.copyWith(
+            color: const Color(0xff888590),
+          ),
         ),
       ],
     );

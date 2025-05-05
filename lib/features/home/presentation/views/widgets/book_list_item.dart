@@ -67,7 +67,7 @@ class BookListItem extends StatelessWidget {
                       children: [
                         Text(
                           bookModel.saleInfo!.saleability == "NOT_FOR_SALE"
-                              ? '0.0'
+                              ? 'Free'
                               : "${bookModel.saleInfo!.amount!} EG",
                           style: Styles.textStyle20.copyWith(
                             fontWeight: FontWeight.bold,
