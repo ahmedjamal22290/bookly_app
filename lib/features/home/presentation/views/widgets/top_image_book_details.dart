@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class TopImageBookDetails extends StatelessWidget {
-  const TopImageBookDetails({super.key});
-
+  const TopImageBookDetails({super.key, required this.imageUrl});
+  final String imageUrl;
   @override
   Widget build(BuildContext context) {
     return SizedBox(

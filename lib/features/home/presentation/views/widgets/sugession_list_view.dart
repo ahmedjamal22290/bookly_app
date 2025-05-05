@@ -18,12 +18,12 @@ class SugessionListView extends StatelessWidget {
             width: MediaQuery.of(context).size.width,
             margin: const EdgeInsets.only(left: 30, bottom: 40),
             child: ListView.builder(
+                physics: const BouncingScrollPhysics(),
                 itemCount: state.items.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   return SugessionListItem(
-                    imageUrl: state
-                        .items[index].volumeInfo!.imageLinks!.smallThumbnail!,
+                    bookModel: state.items[index],
                   );
                 }),
           );

@@ -13,7 +13,7 @@ class BookDetailsViewBody extends StatelessWidget {
   final BookModel? bookModel;
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(slivers: [
+    return CustomScrollView(physics: const BouncingScrollPhysics(), slivers: [
       SliverFillRemaining(
         hasScrollBody: false,
         child: Column(
