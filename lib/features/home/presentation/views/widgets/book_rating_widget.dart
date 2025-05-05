@@ -7,10 +7,10 @@ class BookRatingWidget extends StatelessWidget {
   const BookRatingWidget({
     super.key,
     this.mainAxisAlignment = MainAxisAlignment.start,
-    this.volumeInfo,
+    required this.volumeInfo,
   });
   final MainAxisAlignment mainAxisAlignment;
-  final VolumeInfo? volumeInfo;
+  final VolumeInfo volumeInfo;
   @override
   Widget build(BuildContext context) {
     return Row(

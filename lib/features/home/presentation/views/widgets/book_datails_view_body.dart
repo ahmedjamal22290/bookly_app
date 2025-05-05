@@ -20,17 +20,18 @@ class BookDetailsViewBody extends StatelessWidget {
           children: [
             const BookDetailsAppBar(),
             const TopImageBookDetails(),
-            const Padding(
-              padding: EdgeInsets.only(bottom: 4.0, top: 43),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 4.0, top: 43),
               child: Text(
-                'The Jungle Book',
+                bookModel!.volumeInfo!.title!,
+                textAlign: TextAlign.center,
                 style: Styles.textStyle30,
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(bottom: 14.0),
               child: Text(
-                'Rudyard Kipling',
+                bookModel!.volumeInfo!.authors![0],
                 style: Styles.textStyle18.copyWith(
                   color: const Color(0xffb7b6bc),
                   fontWeight: FontWeight.w500,
@@ -38,9 +39,10 @@ class BookDetailsViewBody extends StatelessWidget {
                 ),
               ),
             ),
-            const Center(
+            Center(
                 child: BookRatingWidget(
               mainAxisAlignment: MainAxisAlignment.center,
+              volumeInfo: bookModel!.volumeInfo!,
             )),
             const BooksButtonAction(),
             Expanded(

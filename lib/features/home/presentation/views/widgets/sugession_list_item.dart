@@ -16,7 +16,7 @@ class SugessionListItem extends StatelessWidget {
               color: Colors.pink,
               borderRadius: BorderRadius.circular(8),
             ),
-            child: Image.asset(
+            child: Image.network(
               imageUrl,
               fit: BoxFit.fill,
             ),
