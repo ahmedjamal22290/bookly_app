@@ -3,9 +3,17 @@ import 'package:bookly_app/features/home/data/models/book_model/book_model.dart'
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class BooksButtonAction extends StatelessWidget {
+class BooksButtonAction extends StatefulWidget {
   const BooksButtonAction({super.key, required this.bookModel});
   final BookModel bookModel;
+
+  @override
+  State<BooksButtonAction> createState() => _BooksButtonActionState();
+}
+
+class _BooksButtonActionState extends State<BooksButtonAction> {
+  bool isLoadingPreview = false;
+  bool isLoadingBuy = false;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -14,7 +22,20 @@ class BooksButtonAction extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () async {
+              if (widget.bookModel.saleInfo!.saleability == "FOR_SALE") {
+                isLoadingBuy = true;
+                setState(() {});
+                Uri uri = Uri.parse(widget.bookModel.saleInfo!.buyLink ?? "");
+                if (await canLaunchUrl(uri)) {
+                  await launchUrl(uri);
+                }
+                await Future.delayed(const Duration(seconds: 2));
+                setState(() {
+                  isLoadingBuy = false;
+                });
+              }
+            },
             style: const ButtonStyle(
               padding: WidgetStatePropertyAll(EdgeInsets.zero),
             ),
@@ -29,22 +50,37 @@ class BooksButtonAction extends StatelessWidget {
                 ),
               ),
               child: Center(
-                child: Text(
-                  bookModel.saleInfo!.saleability == "NOT_FOR_SALE"
-                      ? 'Free'
-                      : "${bookModel.saleInfo!.amount!} EG",
-                  style: Styles.textStyle18.copyWith(
-                      color: Colors.black, fontWeight: FontWeight.bold),
-                ),
+                child: isLoadingBuy
+                    ? SizedBox(
+                        height:
+                            MediaQuery.of(context).size.height * 0.05911 * 0.4,
+                        child: const CircularProgressIndicator(
+                          color: Colors.deepPurple,
+                          strokeWidth: 2.5,
+                        ),
+                      )
+                    : Text(
+                        widget.bookModel.saleInfo!.saleability == "NOT_FOR_SALE"
+                            ? 'Free'
+                            : "${widget.bookModel.saleInfo!.amount!} EG",
+                        style: Styles.textStyle18.copyWith(
+                            color: Colors.black, fontWeight: FontWeight.bold),
+                      ),
               ),
             ),
           ),
           ElevatedButton(
             onPressed: () async {
-              Uri uri = Uri.parse(bookModel.volumeInfo?.previewLink ?? "");
+              isLoadingPreview = true;
+              setState(() {});
+              Uri uri =
+                  Uri.parse(widget.bookModel.volumeInfo?.previewLink ?? "");
               if (await canLaunchUrl(uri)) {
                 await launchUrl(uri);
               }
+              await Future.delayed(const Duration(seconds: 2));
+              isLoadingPreview = false;
+              setState(() {});
             },
             style: const ButtonStyle(
               padding: WidgetStatePropertyAll(EdgeInsets.zero),
@@ -60,15 +96,24 @@ class BooksButtonAction extends StatelessWidget {
                 ),
               ),
               child: Center(
-                child: Text(
-                  bookModel.volumeInfo!.previewLink == null
-                      ? "There is no Preview"
-                      : 'Free preview',
-                  style: Styles.textStyle16.copyWith(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                child: isLoadingPreview
+                    ? SizedBox(
+                        height:
+                            MediaQuery.of(context).size.height * 0.05911 * 0.4,
+                        child: const CircularProgressIndicator(
+                          color: Colors.deepPurple,
+                          strokeWidth: 2.5,
+                        ),
+                      )
+                    : Text(
+                        widget.bookModel.volumeInfo!.previewLink == null
+                            ? "There is no Preview"
+                            : 'Free preview',
+                        style: Styles.textStyle16.copyWith(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
               ),
             ),
           ),

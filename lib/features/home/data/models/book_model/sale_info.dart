@@ -5,8 +5,14 @@ class SaleInfo extends Equatable {
   final String? saleability;
   final bool? isEbook;
   final String? amount;
+  final String? buyLink;
 
-  const SaleInfo({this.amount, this.country, this.saleability, this.isEbook});
+  const SaleInfo(
+      {this.buyLink,
+      this.amount,
+      this.country,
+      this.saleability,
+      this.isEbook});
 
   factory SaleInfo.fromJson(Map<String, dynamic> json) => SaleInfo(
         country: json['country'] as String?,
@@ -15,6 +21,7 @@ class SaleInfo extends Equatable {
             ? json['listPrice']['amount'].toString()
             : "",
         isEbook: json['isEbook'] as bool?,
+        buyLink: json['buyLink'] as String?,
       );
 
   Map<String, dynamic> toJson() => {
@@ -22,8 +29,9 @@ class SaleInfo extends Equatable {
         'saleability': saleability,
         'amount': amount,
         'isEbook': isEbook,
+        'buyLink': buyLink,
       };
 
   @override
-  List<Object?> get props => [country, saleability, isEbook, amount];
+  List<Object?> get props => [buyLink, country, saleability, isEbook, amount];
 }
