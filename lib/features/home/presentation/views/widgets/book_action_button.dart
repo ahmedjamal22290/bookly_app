@@ -1,6 +1,7 @@
 import 'package:bookly_app/core/utils/styles.dart';
 import 'package:bookly_app/features/home/data/models/book_model/book_model.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class BooksButtonAction extends StatefulWidget {
@@ -59,13 +60,44 @@ class _BooksButtonActionState extends State<BooksButtonAction> {
                           strokeWidth: 2.5,
                         ),
                       )
-                    : Text(
-                        widget.bookModel.saleInfo!.saleability == "NOT_FOR_SALE"
-                            ? 'Free'
-                            : "${widget.bookModel.saleInfo!.amount!} EG",
-                        style: Styles.textStyle18.copyWith(
-                            color: Colors.black, fontWeight: FontWeight.bold),
-                      ),
+                    : widget.bookModel.saleInfo!.saleability == "NOT_FOR_SALE"
+                        ? Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                'Free',
+                                style: Styles.textStyle18.copyWith(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              widget.bookModel.accessInfo?.pdf?.isAvailable ==
+                                      false
+                                  ? Container()
+                                  : IconButton(
+                                      icon: const Icon(Icons.download,
+                                          color: Colors.black),
+                                      onPressed: () async {
+                                        Uri uri = Uri.parse(widget
+                                                .bookModel
+                                                .accessInfo
+                                                ?.pdf
+                                                ?.acsTokenLink ??
+                                            "");
+                                        if (await canLaunchUrl(uri)) {
+                                          launchUrl(uri);
+                                        }
+                                      },
+                                    ),
+                            ],
+                          )
+                        : Text(
+                            "${widget.bookModel.saleInfo!.amount!} EG",
+                            style: Styles.textStyle18.copyWith(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
               ),
             ),
           ),
