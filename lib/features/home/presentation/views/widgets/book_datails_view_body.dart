@@ -42,11 +42,10 @@ class BookDetailsViewBody extends StatelessWidget {
                 ),
               ),
             ),
-            Center(
-                child: BookRatingWidget(
+            BookRatingWidget(
               mainAxisAlignment: MainAxisAlignment.center,
               volumeInfo: bookModel!.volumeInfo!,
-            )),
+            ),
             BooksButtonAction(
               bookModel: bookModel!,
             ),
