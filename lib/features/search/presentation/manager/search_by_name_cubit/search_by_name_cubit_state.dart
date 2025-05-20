@@ -1,4 +1,4 @@
-part of 'fetch_by_name_cubit_cubit.dart';
+part of 'search_by_name_cubit_cubit.dart';
 
 abstract class SearchByNameCubitState {
   const SearchByNameCubitState();
