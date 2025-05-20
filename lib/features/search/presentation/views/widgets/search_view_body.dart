@@ -1,21 +1,30 @@
+import 'dart:developer';
+
 import 'package:bookly_app/features/search/presentation/views/widgets/custom_search_text_field.dart';
 import 'package:bookly_app/features/search/presentation/views/widgets/search_result_list_view.dart';
 import 'package:bookly_app/features/search/presentation/views/widgets/search_view_appBar.dart';
 import 'package:flutter/material.dart';
 
-class SearchViewBody extends StatelessWidget {
+class SearchViewBody extends StatefulWidget {
   const SearchViewBody({super.key});
 
   @override
+  State<SearchViewBody> createState() => _SearchViewBodyState();
+}
+
+class _SearchViewBodyState extends State<SearchViewBody> {
+  bool searchByCategory = false;
+
+  @override
   Widget build(BuildContext context) {
-    return const SafeArea(
+    return SafeArea(
       child: Column(
         children: [
           Expanded(
             child: CustomScrollView(
-              physics: BouncingScrollPhysics(),
+              physics: const BouncingScrollPhysics(),
               slivers: [
-                SliverToBoxAdapter(
+                const SliverToBoxAdapter(
                   child: Column(
                     children: [
                       SearchViewAppBar(),
@@ -23,16 +32,23 @@ class SearchViewBody extends StatelessWidget {
                     ],
                   ),
                 ),
-                SliverToBoxAdapter(
+                const SliverToBoxAdapter(
                   child: CustomSearchTextField(),
                 ),
                 SliverToBoxAdapter(
-                  child: CategoryButton(),
+                  child: CategoryButton(
+                    isCategory: searchByCategory,
+                    onToggle: (value) {
+                      setState(() {
+                        searchByCategory = value;
+                      });
+                    },
+                  ),
                 ),
-                SliverToBoxAdapter(
+                const SliverToBoxAdapter(
                   child: SizedBox(height: 16),
                 ),
-                SliverToBoxAdapter(
+                const SliverToBoxAdapter(
                   child: SearchResultListView(),
                 ),
               ],
@@ -76,6 +92,14 @@ class _CategoryButtonState extends State<CategoryButton>
   }
 
   @override
+  void didUpdateWidget(covariant CategoryButton oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.isCategory != widget.isCategory) {
+      widget.isCategory ? _controller.forward() : _controller.reverse();
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 10),
@@ -95,11 +119,6 @@ class _CategoryButtonState extends State<CategoryButton>
                   onTap: () {
                     final flag = !widget.isCategory;
                     widget.onToggle(flag);
-                    if (flag) {
-                      _controller.forward();
-                    } else {
-                      _controller.reverse();
-                    }
                   },
                   child: Container(
                     width: 50,
