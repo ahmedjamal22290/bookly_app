@@ -4,21 +4,28 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class CustomSearchTextField extends StatelessWidget {
   const CustomSearchTextField({
     super.key,
+    required this.onSaved,
   });
-// final TextEditingController _controller =TextEditingController();
+  final void Function(String) onSaved;
   @override
   Widget build(BuildContext context) {
+    final TextEditingController _controller = TextEditingController();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15.0),
       child: TextFormField(
-        // controller:_controller ,
+        controller: _controller,
+        onFieldSubmitted: (value) {
+          onSaved(value);
+        },
         style: const TextStyle(color: Color(0xffE0D6F5)),
         decoration: InputDecoration(
           filled: true,
           fillColor: const Color(0xff1C1533),
           hintText: "Search",
           suffixIcon: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                onSaved(_controller.text);
+              },
               icon: const Icon(
                 FontAwesomeIcons.magnifyingGlass,
                 size: 15,

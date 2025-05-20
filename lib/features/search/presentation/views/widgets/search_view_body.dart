@@ -38,8 +38,12 @@ class _SearchViewBodyState extends State<SearchViewBody> {
                     ],
                   ),
                 ),
-                const SliverToBoxAdapter(
-                  child: CustomSearchTextField(),
+                SliverToBoxAdapter(
+                  child: CustomSearchTextField(
+                    onSaved: (value) {
+                      log(value);
+                    },
+                  ),
                 ),
                 SliverToBoxAdapter(
                   child: CategoryButton(
@@ -70,7 +74,7 @@ class _SearchViewBodyState extends State<SearchViewBody> {
                                 errorMessage: state.errorMessage);
                           } else {
                             return const CustomErrorText(
-                                errorMessage: 'not founded');
+                                errorMessage: 'Start Searching...');
                           }
                         })
                       : BlocBuilder<SearchByNameCubit, SearchByNameCubitState>(
@@ -84,7 +88,7 @@ class _SearchViewBodyState extends State<SearchViewBody> {
                             return SearchResultListView(list: state.books);
                           } else {
                             return const CustomErrorText(
-                                errorMessage: 'Not founded');
+                                errorMessage: 'Start Searching...');
                           }
                         }),
                 ),
