@@ -20,7 +20,7 @@ class BookDetailsViewBody extends StatelessWidget {
           children: [
             const BookDetailsAppBar(),
             TopImageBookDetails(
-              imageUrl: bookModel!.volumeInfo!.imageLinks!.thumbnail!,
+              imageUrl: bookModel!.volumeInfo!.imageLinks?.thumbnail! ?? 'n',
             ),
             Padding(
               padding: const EdgeInsets.only(

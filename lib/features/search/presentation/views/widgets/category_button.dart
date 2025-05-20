@@ -79,4 +79,10 @@ class _CategoryButtonState extends State<CategoryButton>
       ),
     );
   }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 }

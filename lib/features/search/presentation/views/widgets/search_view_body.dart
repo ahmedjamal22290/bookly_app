@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:bookly_app/core/widgets/custom_error_text.dart';
 import 'package:bookly_app/core/widgets/custom_loading_indicator.dart';
 import 'package:bookly_app/features/search/presentation/manager/search_by_category_cubit/search_by_category_cubit_cubit.dart';
@@ -41,7 +39,13 @@ class _SearchViewBodyState extends State<SearchViewBody> {
                 SliverToBoxAdapter(
                   child: CustomSearchTextField(
                     onSaved: (value) {
-                      log(value);
+                      if (searchByCategory) {
+                        BlocProvider.of<SearchByCategoryCubit>(context)
+                            .searchByCategory(value);
+                      } else {
+                        BlocProvider.of<SearchByNameCubit>(context)
+                            .fetchBooksByName(value);
+                      }
                     },
                   ),
                 ),

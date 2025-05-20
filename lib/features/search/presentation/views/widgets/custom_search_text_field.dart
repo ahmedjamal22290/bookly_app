@@ -9,11 +9,11 @@ class CustomSearchTextField extends StatelessWidget {
   final void Function(String) onSaved;
   @override
   Widget build(BuildContext context) {
-    final TextEditingController _controller = TextEditingController();
+    final TextEditingController controller = TextEditingController();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15.0),
       child: TextFormField(
-        controller: _controller,
+        controller: controller,
         onFieldSubmitted: (value) {
           onSaved(value);
         },
@@ -24,7 +24,7 @@ class CustomSearchTextField extends StatelessWidget {
           hintText: "Search",
           suffixIcon: IconButton(
               onPressed: () {
-                onSaved(_controller.text);
+                onSaved(controller.text);
               },
               icon: const Icon(
                 FontAwesomeIcons.magnifyingGlass,
