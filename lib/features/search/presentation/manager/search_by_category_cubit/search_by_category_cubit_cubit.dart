@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'search_by_category_cubit_state.dart';
 
-class SearchByCategoryCubitCubit extends Cubit<SearchByCategoryCubitState> {
-  SearchByCategoryCubitCubit(this._searchRepo)
+class SearchByCategoryCubit extends Cubit<SearchByCategoryCubitState> {
+  SearchByCategoryCubit(this._searchRepo)
       : super(SearchByCategoryCubitInitial());
   final SearchRepo _searchRepo;
   void searchByCategory(String category) async {

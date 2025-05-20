@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'search_by_name_cubit_state.dart';
 
-class SearchByNameCubitCubit extends Cubit<SearchByNameCubitState> {
-  SearchByNameCubitCubit(this._searchRepo) : super(SearchByNameCubitInitial());
+class SearchByNameCubit extends Cubit<SearchByNameCubitState> {
+  SearchByNameCubit(this._searchRepo) : super(SearchByNameCubitInitial());
 
   final SearchRepo _searchRepo;
   void fetchBooksByName(String name) async {
