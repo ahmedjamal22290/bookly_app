@@ -11,10 +11,30 @@ class SearchViewBody extends StatelessWidget {
     return const SafeArea(
       child: Column(
         children: [
-          SearchViewAppBar(),
-          SizedBox(height: 40),
-          CustomSearchTextField(),
-          Expanded(child: SearchResultListView()),
+          Expanded(
+            child: CustomScrollView(
+              physics: BouncingScrollPhysics(),
+              slivers: [
+                SliverToBoxAdapter(
+                  child: Column(
+                    children: [
+                      SearchViewAppBar(),
+                      SizedBox(height: 40),
+                    ],
+                  ),
+                ),
+                SliverToBoxAdapter(
+                  child: CustomSearchTextField(),
+                ),
+                SliverToBoxAdapter(
+                  child: SizedBox(height: 16),
+                ),
+                SliverToBoxAdapter(
+                  child: SearchResultListView(),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
