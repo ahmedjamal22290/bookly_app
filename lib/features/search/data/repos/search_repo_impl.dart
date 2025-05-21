@@ -16,6 +16,7 @@ class SearchRepoImpl implements SearchRepo {
       Map<String, dynamic> jsonData =
           await apiService.get(endPoints: 'volumes?q=$name');
       List<BookModel> items = [];
+      if (jsonData['totalItems'] == 0) return right(items);
       for (var element in jsonData['items']) {
         items.add(BookModel.fromJson(element));
       }
@@ -36,6 +37,7 @@ class SearchRepoImpl implements SearchRepo {
       jsonData =
           await apiService.get(endPoints: 'volumes?q=subject::$category');
       List<BookModel> items = [];
+      if (jsonData['totalItems'] == 0) return right(items);
       for (var element in jsonData['items']) {
         items.add(BookModel.fromJson(element));
       }
