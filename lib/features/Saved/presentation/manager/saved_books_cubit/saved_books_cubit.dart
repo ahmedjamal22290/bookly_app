@@ -12,12 +12,12 @@ class SavedBooksCubit extends Cubit<SavedBooksState> {
   final SavedRepo _savedRepo;
   void addNewSavedBook(BookModel bookModel) {
     _savedRepo.addNewItem(bookModel);
-    emit(SavedBooksUpdate());
+    emit(SavedBooksUpdate(books: _savedRepo.getSavedBooks()));
   }
 
   void deleteSavedBook(BookModel bookModel) {
     _savedRepo.deleteItem(bookModel);
-    emit(SavedBooksUpdate());
+    emit(SavedBooksUpdate(books: _savedRepo.getSavedBooks()));
   }
 
   List<BookModel> getSavedBooks() {

@@ -1,3 +1,4 @@
+import 'package:bookly_app/features/Saved/presentation/views/widgets/saved_view_body.dart';
 import 'package:flutter/material.dart';
 
 class SavedView extends StatelessWidget {
@@ -5,8 +6,8 @@ class SavedView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(),
+    return const Scaffold(
+      body: SavedViewBody(),
     );
   }
 }

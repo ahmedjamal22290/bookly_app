@@ -6,7 +6,11 @@ abstract class SavedBooksState {
 
 final class SavedBooksInitial extends SavedBooksState {}
 
-final class SavedBooksUpdate extends SavedBooksState {}
+final class SavedBooksUpdate extends SavedBooksState {
+  final List<BookModel> books;
+
+  SavedBooksUpdate({required this.books});
+}
 
 final class SavedBooksEmpty extends SavedBooksState {}
 
