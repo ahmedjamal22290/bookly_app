@@ -1,4 +1,3 @@
-import 'package:bookly_app/features/Audio/presentation/views/Audio_view.dart';
 import 'package:bookly_app/features/Saved/presentation/views/saved_view.dart';
 import 'package:bookly_app/features/home/presentation/views/home_view.dart';
 import 'package:bookly_app/features/profile/presentation/views/profile_view.dart';
@@ -30,13 +29,9 @@ class _CustomPageViewState extends State<CustomPageView> {
           _pageController.jumpToPage(1);
           BlocProvider.of<ViewsManagerCubit>(context).index = 1;
         }
-        if (state is AudioViewState) {
-          _pageController.jumpToPage(2);
-          BlocProvider.of<ViewsManagerCubit>(context).index = 2;
-        }
         if (state is ProfileViewState) {
           _pageController.jumpToPage(3);
-          BlocProvider.of<ViewsManagerCubit>(context).index = 3;
+          BlocProvider.of<ViewsManagerCubit>(context).index = 2;
         }
       },
       builder: (context, state) {
@@ -51,7 +46,6 @@ class _CustomPageViewState extends State<CustomPageView> {
           children: const [
             HomeView(),
             SavedView(),
-            AudioView(),
             ProfileView(),
           ],
         );

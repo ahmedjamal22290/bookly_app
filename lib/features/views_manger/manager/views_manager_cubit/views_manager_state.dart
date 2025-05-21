@@ -8,6 +8,4 @@ final class CombinedViewState extends ViewsManagerState {}
 
 final class SavedViewState extends ViewsManagerState {}
 
-final class AudioViewState extends ViewsManagerState {}
-
 final class ProfileViewState extends ViewsManagerState {}

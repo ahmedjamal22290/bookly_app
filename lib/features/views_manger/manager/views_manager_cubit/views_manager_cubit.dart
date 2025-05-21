@@ -12,9 +12,6 @@ class ViewsManagerCubit extends Cubit<ViewsManagerState> {
     } else if (pageNum == 1) {
       index = 1;
       emit(SavedViewState());
-    } else if (pageNum == 2) {
-      index = 2;
-      emit(AudioViewState());
     } else {
       index = 3;
       emit(ProfileViewState());

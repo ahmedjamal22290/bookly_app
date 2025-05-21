@@ -29,10 +29,6 @@ class _CustomToolBarState extends State<CustomToolBar> {
         BlocProvider.of<ViewsManagerCubit>(context).index = 1;
         setState(() {});
       }
-      if (state is AudioViewState) {
-        BlocProvider.of<ViewsManagerCubit>(context).index = 2;
-        setState(() {});
-      }
       if (state is ProfileViewState) {
         BlocProvider.of<ViewsManagerCubit>(context).index = 3;
         setState(() {});
@@ -90,24 +86,6 @@ class _CustomToolBarState extends State<CustomToolBar> {
                       height: 20,
                       colorFilter: ColorFilter.mode(
                           BlocProvider.of<ViewsManagerCubit>(context).index == 1
-                              ? Colors.white
-                              : Colors.black.withOpacity(0.5),
-                          BlendMode.srcATop),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      BlocProvider.of<ViewsManagerCubit>(context).index = 2;
-                      BlocProvider.of<ViewsManagerCubit>(context)
-                          .navigateToPage(2);
-                      setState(() {});
-                    },
-                    child: SvgPicture.asset(
-                      'assets/icons/Audio.svg',
-                      width: 16,
-                      height: 20,
-                      colorFilter: ColorFilter.mode(
-                          BlocProvider.of<ViewsManagerCubit>(context).index == 2
                               ? Colors.white
                               : Colors.black.withOpacity(0.5),
                           BlendMode.srcATop),
