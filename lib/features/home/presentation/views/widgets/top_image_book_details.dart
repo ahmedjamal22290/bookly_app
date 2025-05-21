@@ -3,8 +3,14 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class TopImageBookDetails extends StatelessWidget {
-  const TopImageBookDetails({super.key, required this.imageUrl});
+  const TopImageBookDetails(
+      {super.key,
+      required this.imageUrl,
+      required this.onFavToggle,
+      required this.onNotFavToggle});
   final String imageUrl;
+  final void Function() onFavToggle;
+  final void Function() onNotFavToggle;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -28,7 +34,10 @@ class TopImageBookDetails extends StatelessWidget {
             ),
           ),
         ),
-        const FavoriteButton()
+        FavoriteButton(
+          onFavToggle: onFavToggle,
+          onNotFavToggle: onNotFavToggle,
+        )
       ],
     );
   }

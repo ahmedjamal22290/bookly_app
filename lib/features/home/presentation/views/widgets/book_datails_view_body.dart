@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:bookly_app/core/utils/styles.dart';
+import 'package:bookly_app/features/Saved/presentation/manager/saved_books_cubit/saved_books_cubit.dart';
 import 'package:bookly_app/features/home/data/models/book_model/book_model.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/book_action_button.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/book_details_appbar.dart';
@@ -7,6 +10,7 @@ import 'package:bookly_app/features/home/presentation/views/widgets/sugession_li
 import 'package:bookly_app/features/home/presentation/views/widgets/top_image_book_details.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BookDetailsViewBody extends StatelessWidget {
   const BookDetailsViewBody({super.key, required this.bookModel});
@@ -21,6 +25,16 @@ class BookDetailsViewBody extends StatelessWidget {
             const BookDetailsAppBar(),
             TopImageBookDetails(
               imageUrl: bookModel!.volumeInfo!.imageLinks?.thumbnail! ?? 'n',
+              onFavToggle: () {
+                BlocProvider.of<SavedBooksCubit>(context)
+                    .addNewSavedBook(bookModel!);
+                log('book Model add successfluy ${bookModel!.id}');
+              },
+              onNotFavToggle: () {
+                BlocProvider.of<SavedBooksCubit>(context)
+                    .deleteSavedBook(bookModel!);
+                log('book Model deleted successfluy ${bookModel!.id}');
+              },
             ),
             Padding(
               padding: const EdgeInsets.only(

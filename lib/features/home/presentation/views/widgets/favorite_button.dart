@@ -1,10 +1,15 @@
+import 'package:bookly_app/features/Saved/presentation/manager/saved_books_cubit/saved_books_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class FavoriteButton extends StatefulWidget {
   const FavoriteButton({
     super.key,
+    required this.onFavToggle,
+    required this.onNotFavToggle,
   });
-
+  final void Function() onFavToggle;
+  final void Function() onNotFavToggle;
   @override
   State<FavoriteButton> createState() => _FavoriteButtonState();
 }
@@ -41,7 +46,11 @@ class _FavoriteButtonState extends State<FavoriteButton>
             child: IconButton(
               onPressed: () {
                 fav = !fav;
-
+                if (fav) {
+                  widget.onFavToggle.call();
+                } else {
+                  widget.onNotFavToggle.call();
+                }
                 _controller.forward();
               },
               icon: Icon(
