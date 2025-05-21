@@ -20,8 +20,10 @@ class SavedBooksCubit extends Cubit<SavedBooksState> {
     emit(SavedBooksUpdate());
   }
 
-  void getSavedBooks() {
+  List<BookModel> getSavedBooks() {
     List<BookModel> list = _savedRepo.getSavedBooks();
+
     emit(list.isEmpty ? SavedBooksEmpty() : SavedBooksSuccess(books: list));
+    return list;
   }
 }

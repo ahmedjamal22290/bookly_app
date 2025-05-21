@@ -1,4 +1,5 @@
 import 'package:bookly_app/features/Saved/presentation/manager/saved_books_cubit/saved_books_cubit.dart';
+import 'package:bookly_app/features/home/data/models/book_model/book_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -7,9 +8,11 @@ class FavoriteButton extends StatefulWidget {
     super.key,
     required this.onFavToggle,
     required this.onNotFavToggle,
+    required this.id,
   });
   final void Function() onFavToggle;
   final void Function() onNotFavToggle;
+  final String id;
   @override
   State<FavoriteButton> createState() => _FavoriteButtonState();
 }
@@ -19,10 +22,11 @@ class _FavoriteButtonState extends State<FavoriteButton>
   late final AnimationController _controller;
   late final Animation<double> _sizeAnimation;
 
-  bool fav = false;
+  late bool fav;
   @override
   void initState() {
     super.initState();
+
     _controller = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 200));
 
@@ -33,6 +37,16 @@ class _FavoriteButtonState extends State<FavoriteButton>
       if (status == AnimationStatus.completed) {
         _controller.reverse();
       }
+    });
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    List<BookModel> list =
+        BlocProvider.of<SavedBooksCubit>(context).getSavedBooks();
+    fav = list.any((b) {
+      return b.id == widget.id;
     });
   }
 

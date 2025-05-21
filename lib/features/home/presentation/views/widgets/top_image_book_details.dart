@@ -7,10 +7,12 @@ class TopImageBookDetails extends StatelessWidget {
       {super.key,
       required this.imageUrl,
       required this.onFavToggle,
-      required this.onNotFavToggle});
+      required this.onNotFavToggle,
+      required this.id});
   final String imageUrl;
   final void Function() onFavToggle;
   final void Function() onNotFavToggle;
+  final String id;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -35,6 +37,7 @@ class TopImageBookDetails extends StatelessWidget {
           ),
         ),
         FavoriteButton(
+          id: id,
           onFavToggle: onFavToggle,
           onNotFavToggle: onNotFavToggle,
         )

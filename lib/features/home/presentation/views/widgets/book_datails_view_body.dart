@@ -24,6 +24,7 @@ class BookDetailsViewBody extends StatelessWidget {
           children: [
             const BookDetailsAppBar(),
             TopImageBookDetails(
+              id: bookModel!.id!,
               imageUrl: bookModel!.volumeInfo!.imageLinks?.thumbnail! ?? 'n',
               onFavToggle: () {
                 BlocProvider.of<SavedBooksCubit>(context)
