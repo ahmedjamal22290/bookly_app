@@ -14,7 +14,7 @@ class SavedRepoImpl implements SavedRepo {
   }
 
   @override
-  List<BookModel> getSavedBoooks() {
+  List<BookModel> getSavedBooks() {
     return savedBooks;
   }
 }
