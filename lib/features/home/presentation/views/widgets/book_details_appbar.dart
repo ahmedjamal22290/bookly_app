@@ -22,15 +22,6 @@ class BookDetailsAppBar extends StatelessWidget {
                 color: Colors.white,
                 size: 22.29,
               )),
-          const Spacer(),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.shopping_cart_outlined,
-              color: Colors.white,
-              size: 25,
-            ),
-          ),
         ],
       ),
     );
