@@ -41,6 +41,7 @@ class _CustomPageViewState extends State<CustomPageView> {
 
             BlocProvider.of<ViewsManagerCubit>(context).whatIndex();
           },
+          physics: const BouncingScrollPhysics(),
           controller: _pageController,
           scrollDirection: Axis.horizontal,
           children: const [
